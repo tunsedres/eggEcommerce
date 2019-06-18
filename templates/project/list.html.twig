@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProjectController!{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+
+        <div style="margin-top: 30px; margin-bottom: 20px"></<h3>List projects</h3> | <a href="{{ path('create_project') }}">Create a new project</a></div>
+
+        <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Body</th>
+                        <th scope="col">CreatedAt</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for project in projects %}
+                <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{ project.title }}</td>
+                        <td>{{ project.body }}</td>
+                        <td>{{ project.createdAt|date }}</td>
+                        <td><a href="{{ path('project_edit',{ project:project.id }) }}">Edit</a></td>
+                        <td><a href="{{ path('project_delete',{ project:project.id }) }}">Delete</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+</div>
+
+{% endblock %}
