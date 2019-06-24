@@ -25,7 +25,7 @@
                 <tr>
                         <th scope="row">{{ loop.index }}</th>
                         <td>{{ project.title }}</td>
-                        <td>{{ project.body }}</td>
+                        <td>{{ project.body|slice(0,90) }}</td>
                         <td>{{ project.createdAt|date }}</td>
                         <td><a href="{{ path('project_edit',{ project:project.id }) }}">Edit</a></td>
                         <td><a href="{{ path('project_delete',{ project:project.id }) }}">Delete</a></td>
