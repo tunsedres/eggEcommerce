@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -10,9 +11,11 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Project
 {
+    use TimestampableEntity;
+
     public function __construct()
     {
-        $this->createdAt = new \DateTime();
+        $this->updatedAt = $this->createdAt = new \DateTime();
     }
 
     /**
@@ -34,11 +37,6 @@ class Project
      * @ORM\Column(type="text", nullable=true)
      */
     private $body;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
 
     public function getId(): ?int
     {
@@ -65,18 +63,6 @@ class Project
     public function setBody(?string $body): self
     {
         $this->body = $body;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
 
         return $this;
     }

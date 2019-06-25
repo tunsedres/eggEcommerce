@@ -29,5 +29,5 @@ services:
 
     App\Listeners\UserRegisteredListener:
         tags:
-            - { name: 'kernel.event_listener', event:  'user.registered' }
+            - { name: kernel.event_listener, event:  user.registered }
 

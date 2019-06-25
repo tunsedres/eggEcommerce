@@ -1,0 +1,16 @@
+
+
+<script>
+    {% for message in app.flashes('success') %}
+
+        $.notify({
+            // options
+            message: "{{ message }}"
+        },{
+            // settings
+            type: 'success'
+        });
+
+    {% endfor %}
+
+</script>

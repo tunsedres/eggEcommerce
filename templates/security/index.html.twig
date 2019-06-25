@@ -2,37 +2,63 @@
 
 {% block title %}Log in!{% endblock %}
 
+
+{% block stylesheets %}
+    <style>
+        .row{
+            margin-top: 20px;
+        }
+        .left-part, .right-part{
+            border: 2px solid #efefef;
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+        .right-part{
+            padding-top: 30px;
+        }
+    </style>
+    {{ parent() }}
+{% endblock %}
+
 {% block body %}
     <div class="container">
-    <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+        <div class="row">
+            <div class="col-md-6 left-part">
+                <form method="post">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail" class="sr-only">Email</label>
-        <input type="email" value="{{ last_username }}" name="_username" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="_password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                    <div class="form-group">
+                        <label for="inputEmail" class="sr-only">Email</label>
+                        <input type="email" value="{{ last_username }}" name="_username" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input type="password" name="_password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
 
-        <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}"
-        >
+                    {#
+                        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                        See https://symfony.com/doc/current/security/remember_me.html
 
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
+                        <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" name="_remember_me"> Remember me
+                            </label>
+                        </div>
+                    #}
 
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" name="_remember_me"> Remember me
-                </label>
+                    <button class="btn" style="float:right " type="submit">
+                        Sign in
+                    </button>
+                </form>
             </div>
-        #}
-
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
-        </button>
-    </form>
+            <div class="col-md-6 right-part">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus error eveniet harum hic itaque iusto maiores neque nihil praesentium qui. Ad animi beatae consequuntur cupiditate dicta facilis fugit maxime mollitia nostrum obcaecati, porro provident rem sed, sit ullam unde vel voluptatem. Atque hic incidunt officiis ut velit veritatis voluptate voluptatum?
+            </div>
+        </div>
     </div>
 {% endblock %}

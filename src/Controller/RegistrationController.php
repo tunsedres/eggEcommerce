@@ -39,9 +39,11 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             $userRegisterEvent = new UserRegistered($user);
-            $eventDispatcher->dispatch($userRegisterEvent);
+            $eventDispatcher->dispatch($userRegisterEvent, 'user.registered');
 
-            $this->redirectToRoute('home_page');
+            $this->addFlash('success', 'Successfully Registered');
+
+            return $this->redirectToRoute('login');
         }
 
         return $this->render('registration/register.html.twig', [

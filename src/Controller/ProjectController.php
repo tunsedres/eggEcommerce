@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class ProjectController extends AbstractController
 {
     /**
-     * @Route("/project/create", name="create_project")
+     * @Route("/projects/create", name="create_project")
      */
     public function create()
     {
@@ -35,7 +35,7 @@ class ProjectController extends AbstractController
         $errors = $validator->validate($project);
 
         if(count($errors)>0)
-            return $this->render('project/create.html.twig', ['errors'=>$errors]);
+            return $this->render('project/edit.html.twig', ['errors'=>$errors, 'type'=>'Create', 'project'=> new Project()]);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($project);
@@ -87,6 +87,7 @@ class ProjectController extends AbstractController
     {
         $project->setTitle($request->get('title'));
         $project->setBody($request->get('body'));
+        $project->setUpdatedAt(new \DateTime());
 
         $errors = $validator->validate($project);
 
