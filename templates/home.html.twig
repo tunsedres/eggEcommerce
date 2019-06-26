@@ -5,4 +5,28 @@
 
 {% block body %}
 
+    <div class="container">
+
+        <h3 style="margin-top: 20px;">Blog</h3>
+
+        <div class="row">
+
+            {% for blog in blogs %}
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{{ path('blog_detail', {id: blog.id}) }}">{{ blog.title }}</a></h5>
+                        <p class="card-text">{{ blog.body|length > 1000 ? blog.body|slice(0,1000) ~ '...'|raw : blog.body|raw }}</p>
+                        <a href="{{ path('blog_detail', {id: blog.id}) }}" class="btn btn-primary">Details</a>
+
+                        <small style="float: right;"><a href="{{ path('blog_detail', {id: blog.id}) }}">{{ blog.comments|length }} Comments</a></small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
 {% endblock %}

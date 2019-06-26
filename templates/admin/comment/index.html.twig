@@ -1,0 +1,31 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %} Comment List !{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Coment</th>
+            <th scope="col">Operations</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for comment in comments %}
+            <tr>
+                <th scope="row">{{ loop.index }}</th>
+                <td>{{ comment.fullName}}</td>
+                <td>{{ comment.comment }}</td>
+                <td><a href="{{ path('comment_delete',{ comment:comment.id }) }}">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+{% endblock %}

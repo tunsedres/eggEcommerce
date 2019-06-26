@@ -1,13 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin_base.html.twig' %}
 
-{% block title %}Hello ProjectController!{% endblock %}
+{% block title %} Blog List !{% endblock %}
 
 {% block body %}
 
 <div class="container">
 
 
-        <div style="margin-top: 30px; margin-bottom: 20px"></<h3>List projects</h3> | <a href="{{ path('create_project') }}">Create a new project</a></div>
+        <div style="margin-top: 30px; margin-bottom: 20px"></<h3>List blogs</h3> | <a href="{{ path('create_blog') }}">Create a new blog</a></div>
 
         <table class="table">
                 <thead class="thead-dark">
@@ -21,14 +21,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for project in projects %}
+                {% for blog in blogs %}
                 <tr>
                         <th scope="row">{{ loop.index }}</th>
-                        <td>{{ project.title }}</td>
-                        <td>{{ project.body|slice(0,90) }}</td>
-                        <td>{{ project.createdAt|date }}</td>
-                        <td><a href="{{ path('project_edit',{ project:project.id }) }}">Edit</a></td>
-                        <td><a href="{{ path('project_delete',{ project:project.id }) }}">Delete</a></td>
+                        <td>{{ blog.title }}</td>
+                        <td>{{ blog.body|slice(0,90) }}</td>
+                        <td>{{ blog.createdAt|date }}</td>
+                        <td><a href="{{ path('blog_edit',{ blog:blog.id }) }}">Edit</a></td>
+                        <td><a href="{{ path('blog_delete',{ blog:blog.id }) }}">Delete</a></td>
                 </tr>
                 {% endfor %}
                 </tbody>
