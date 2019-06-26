@@ -48,7 +48,7 @@ class Blog
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="blog")
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="blog", cascade={"persist"})
      */
     private $comments;
 

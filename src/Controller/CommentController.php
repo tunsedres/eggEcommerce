@@ -23,14 +23,15 @@ class CommentController extends AbstractController
         $comment->setEmail($request->get('email'));
         $comment->setUrl($request->get('url'));
         $comment->setComment($request->get('comment'));
-        $comment->setBlog($blog);
+
+        $blog->addComment($comment);
 
         $errors = $validator->validate($comment);
         if(count($errors)>0)
             return $this->render('/blog/index.html.twig', ['errors'=>$errors, 'blog'=> $blog]);
 
         $em = $this->getDoctrine()->getManager();
-        $em->persist($comment);
+        $em->persist($blog);
         $em->flush();
 
         $this->addFlash('success', 'Your comment has been added successfully');
